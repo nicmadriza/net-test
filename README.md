@@ -30,7 +30,7 @@ Se puede agregar en el mismo solution.
 
 • Comentarios: https://jsonplaceholder.typicode.com/comments
 
-• Users: https://jsonplaceholder.typicode.com/users
+• Usuarios: https://jsonplaceholder.typicode.com/users
 
 ## Bonus
 
