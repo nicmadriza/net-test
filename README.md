@@ -7,7 +7,7 @@ Nuestra empresa ha trabajado durante años sobre esta plataforma y consideramos 
 
 ## Ejercicio
 
-• Crear un proyecto web MVC en NET 5.
+• Crear un proyecto web MVC en NET 6.
 
 • Consumir el servicio descrito en #Servicios a consumir utilizando la librería RestSharp. Parsear la respuesta usando Newtonsoft Json.NET.
 
@@ -21,7 +21,7 @@ las clases de los objetos para la serialización de los datos que vienen en el s
 
 ---------------------------------------------
 Opcional:
-Crear un segundo proyecto que haga exactamente lo mismo pero que sea Blazor Server y que consuma la librería que consume los datos del servicio.
+Crear un segundo proyecto que haga exactamente lo mismo pero en Blazor Server y que consuma la librería que consume los datos del servicio.
 Se puede agregar en el mismo solution.
 
 ## Servicios a consumir
@@ -41,7 +41,7 @@ Ya sea mediante un post normal o un post mediante un llamado ajax utilizando jQu
 
 ## Bonus avanzado
 
-• Usar dependency injection en el proyecto web para instanciar de manera automática la clase de la librería que consume el servicio en el constructor del controlador del proyecto web. (Esta característica es nueva en Net Core y Net 5)
+• Usar dependency injection en el proyecto web para instanciar de manera automática la clase de la librería que consume el servicio en el constructor del controlador del proyecto web. (Esta característica se implementa en la evolución a Net Core)
 Debe utilizar uno de los tres metodos disponibles para inyectar que son: AddTransient, AddScope o AddSingleton.
 
 • Mostrar el UserAgent y la IP actual del navegador en la página web.
