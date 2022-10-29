@@ -1,0 +1,1 @@
+La solución incluye dos proyectos: FeedService (WebAPI)(localhost:7032) y FeedWeb (Web App)(localhost:7113), ambos se inician al mismo tiempo, ya que FeedWeb debe consumir a FeedService.

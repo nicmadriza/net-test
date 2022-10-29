@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col col-lg-6">
+                <select id="User" name="User" class="form-select">
+                    <option>Choose User</option>
+                    @Html.Raw(ViewData["Options"])
+                </select>
+            </div>
+            <div class="col col-lg-4">
+                <input id="Text" name="Text" type="text" class="form-control" placeholder="Search Text" value="@ViewData["SearchText"]" />
+            </div>
+            <div class="col col-lg-2">
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+            </div>
+        </div>
+    }
+    <br />
+    <div class="row">
+        <div class="col col-lg-2"></div>
+        <div class="col col-lg-8">
+            @Html.Raw(ViewData["User"])
+        </div>
+        <div class="col col-lg-2"></div>
+    </div>
+    <br />
+    <div class="row">
+        @Html.Raw(ViewData["Posts"])
+    </div>
+</div>
+
+<script>
+    function getComments(postId) 
+	{
+        let divId = "#post" + postId;
+
+        if ( $(divId).children().length > 0 ) 
+        {
+            $(divId).empty();
+        }
+        else
+        {
+		    $.ajax({
+			    type: "POST",
+			    url: "@Url.Action("BindComments")",
+			    data: { form: JSON.stringify({ "postId": postId }) },
+			    dataType: "json",
+			    success: function (response) {
+                    for (let i = 0; i < response.length; i++) 
+                    {
+                        let comment = response[i];
+                        let name = comment.Name;
+                        let email = comment.Email;
+                        let body = comment.Body;
+
+                        $(divId).append(commentCardTemplate(name, email, body));
+                    }
+			    },
+			    error: function (response) {
+				    console.log(response);
+			    }
+		    });
+        }
+	}
+
+    function commentCardTemplate(name, email, body)
+    {
+        return "<div class='card' style='border-radius: 0px; background-color: rgb(235 232 232); border: 0px;'>" + 
+        "<div class='card-body'>" +
+        "<p class='card-text'><b style='color: #0041a1;'>" + name + " (" + email + ")</b> " + alternateUppercase(body) + "</p>" + 
+        "</div>" +
+        "</div>";
+    }
+
+    function alternateUppercase(text)
+    {
+        let textArray = text.split(" ");
+
+        var newText = "";
+        for (let i = 0; i < textArray.length; i++) 
+        {
+            let word = textArray[i];
+            let capitalize = word.charAt(0).toUpperCase() + word.slice(1);
+
+            newText = newText + " " + capitalize;
+        }
+
+        return newText.trim();
+    }
+</script>
